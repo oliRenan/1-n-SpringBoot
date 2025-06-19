@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Cadastro</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --sidebar-width: 280px; /* Largura do menu lateral */
+        }
+
+        body {
+            background-color: #f8f9fa; /* Fundo cinza claro para contraste */
+            color: #212529;
+        }
+
+        .sidebar {
+            position: fixed; /* Menu fixo na tela */
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background-color: #ffffff; /* Fundo branco para o menu */
+            border-right: 1px solid #dee2e6;
+            transition: all 0.3s;
+        }
+
+        /* Itens do menu de navegação */
+        .sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #495057; /* Cor de texto mais suave */
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem; /* Bordas arredondadas */
+            margin-bottom: 0.25rem; /* Pequeno espaçamento entre itens */
+        }
+        
+        /* Efeito hover e estado ativo */
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: #eef2ff; /* Cor de fundo para item ativo/hover */
+            color: #435ebe; /* Cor do texto e ícone para item ativo/hover */
+        }
+
+        .sidebar .nav-link .bi {
+            font-size: 1.2rem;
+            margin-right: 1rem; /* Espaço entre ícone e texto */
+        }
+
+        /* Título do sistema no topo da sidebar */
+        .sidebar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #212529;
+            text-decoration: none;
+        }
+        .sidebar-brand .bi {
+            color: #0d6efd; /* Ícone com a cor primária do Bootstrap */
+        }
+
+        /* Conteúdo Principal */
+        .main-content {
+            margin-left: var(--sidebar-width); /* Empurra o conteúdo para a direita */
+            padding: 2rem;
+        }
+
+        .card {
+            border: none; /* Remove bordas para um look mais clean */
+            border-radius: 0.75rem; /* Bordas mais arredondadas */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+        }
+
+        .card-header {
+            background-color: transparent; /* Remove o fundo do cabeçalho */
+            border-bottom: 1px solid #f0f0f0;
+            font-weight: 600;
+        }
+        
+        /* Estilos para telas menores */
+        @media (max-width: 768px) {
+            .sidebar {
+                /* Esconde o menu lateral e o transforma em um menu superior */
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            .sidebar .nav {
+                flex-direction: row; /* Itens do menu em linha */
+                justify-content: center;
+            }
+            .sidebar-brand {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="d-flex">
+    <aside class="sidebar p-3">
+        <div class="d-flex align-items-center justify-content-center mb-4">
+            <a href="#" class="sidebar-brand">
+                <i class="bi bi-box-seam-fill me-2"></i>
+                <span>Cadastros</span>
+            </a>
+        </div>
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a th:href="@{/departamentos}" class="nav-link">
+                    <i class="bi bi-building"></i>
+                    <span>Departamentos</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{/funcionarios}" class="nav-link">
+                    <i class="bi bi-people-fill"></i>
+                    <span>Funcionários</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="card">
+            <div class="card-header fs-5">
+                Bem-vindo ao seu Dashboard!
+            </div>
+            <div class="card-body p-4">
+                <h5 class="card-title">Sistema de Gerenciamento Integrado</h5>
+                <p class="card-text text-body-secondary">
+                    Use o menu de navegação à esquerda para gerenciar os dados do sistema de forma rápida e eficiente.
+                </p>
+                <a th:href="@{/funcionarios}" class="btn btn-primary mt-3 px-3 py-2">
+                    <i class="bi bi-plus-lg me-2"></i>
+                    Gerenciar Funcionários
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
