@@ -90,18 +90,6 @@
                                 <option value="">Selecione um departamento...</option>
                                 <option th:each="dep : ${departamentos}" th:value="${dep.idDepartamento}" th:text="${dep.nome}"></option>
                             </select>
-                            <div class="col-md-6">
-                                <label for="departamento" class="form-label">Departamento</label>
-                                <div class="input-group">
-                                    <select id="departamento" class="form-select" th:field="*{departamento.idDepartamento}" required>
-                                        <option value="">Selecione um departamento...</option>
-                                        <option th:each="dep : ${departamentos}" th:value="${dep.idDepartamento}" th:text="${dep.nome}"></option>
-                                    </select>
-                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#newDepartmentModal" title="Adicionar Novo Departamento">
-                                        <i class="bi bi-plus-lg"></i>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,92 +108,7 @@
         </div>
     </main>
 </div>
-<div class="modal fade" id="newDepartmentModal" tabindex="-1" aria-labelledby="newDepartmentModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form id="newDepartmentForm"> <div class="modal-header">
-                    <h5 class="modal-title" id="newDepartmentModalLabel">Novo Departamento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="newDepartmentNome" class="form-label">Nome do Departamento</label>
-                        <input type="text" class="form-control" id="newDepartmentNome" name="nome" placeholder="Ex: Marketing" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="newDepartmentSupervisor" class="form-label">Nome do Supervisor (Opcional)</label>
-                        <input type="text" class="form-control" id="newDepartmentSupervisor" name="supervisor" placeholder="Ex: João Silva">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="saveNewDepartmentBtn">Salvar Departamento</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const newDepartmentForm = document.getElementById('newDepartmentForm');
-        const newDepartmentModal = new bootstrap.Modal(document.getElementById('newDepartmentModal'));
-        const departamentoSelect = document.getElementById('departamento');
-
-        newDepartmentForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const formData = new FormData(newDepartmentForm);
-            const departmentData = {};
-            formData.forEach((value, key) => {
-                departmentData[key] = value;
-            });
-
-            // Assuming your backend endpoint for saving departments is '/api/departamentos'
-            fetch('/departamentos/api', { // <-- CHANGE THIS URL
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(departmentData),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    // If the response status is not 2xx, throw an error
-                    return response.json().then(err => { throw new Error(err.message || 'Erro ao salvar departamento'); });
-                }
-                return response.json(); // Assuming your backend returns the saved department object
-            })
-            .then(data => {
-                // Add the new department to the select options
-                const newOption = document.createElement('option');
-                newOption.value = data.idDepartamento; // Assuming your backend returns 'idDepartamento'
-                newOption.textContent = data.nome;     // Assuming your backend returns 'nome'
-                departamentoSelect.appendChild(newOption);
-
-                // Select the newly added department
-                departamentoSelect.value = data.idDepartamento;
-
-                // Close the modal
-                newDepartmentModal.hide();
-
-                // Optionally, clear the modal form fields
-                newDepartmentForm.reset();
-
-                alert('Departamento adicionado com sucesso!');
-            })
-            .catch(error => {
-                console.error('Erro ao adicionar departamento:', error);
-                alert('Erro ao adicionar departamento: ' + error.message);
-            });
-        });
-
-        // Optional: Clear the form when the modal is hidden
-        newDepartmentModal._element.addEventListener('hidden.bs.modal', function () {
-            newDepartmentForm.reset();
-        });
-    });
-</script>
 </body>
 </html>

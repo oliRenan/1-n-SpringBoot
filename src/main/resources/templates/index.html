@@ -11,50 +11,47 @@
 
     <style>
         :root {
-            --sidebar-width: 280px; /* Largura do menu lateral */
+            --sidebar-width: 280px; 
         }
 
         body {
-            background-color: #f8f9fa; /* Fundo cinza claro para contraste */
+            background-color: #f8f9fa; 
             color: #212529;
         }
 
         .sidebar {
-            position: fixed; /* Menu fixo na tela */
+            position: fixed; 
             top: 0;
             left: 0;
             bottom: 0;
             width: var(--sidebar-width);
-            background-color: #ffffff; /* Fundo branco para o menu */
+            background-color: #ffffff; 
             border-right: 1px solid #dee2e6;
             transition: all 0.3s;
         }
 
-        /* Itens do menu de navegação */
         .sidebar .nav-link {
             display: flex;
             align-items: center;
             font-size: 1.05rem;
             font-weight: 500;
-            color: #495057; /* Cor de texto mais suave */
+            color: #495057; 
             padding: 0.8rem 1.5rem;
-            border-radius: 0.5rem; /* Bordas arredondadas */
-            margin-bottom: 0.25rem; /* Pequeno espaçamento entre itens */
+            border-radius: 0.5rem; 
+            margin-bottom: 0.25rem;
         }
         
-        /* Efeito hover e estado ativo */
         .sidebar .nav-link:hover,
         .sidebar .nav-link.active {
-            background-color: #eef2ff; /* Cor de fundo para item ativo/hover */
-            color: #435ebe; /* Cor do texto e ícone para item ativo/hover */
+            background-color: #eef2ff; 
+            color: #435ebe; 
         }
 
         .sidebar .nav-link .bi {
             font-size: 1.2rem;
-            margin-right: 1rem; /* Espaço entre ícone e texto */
+            margin-right: 1rem; 
         }
 
-        /* Título do sistema no topo da sidebar */
         .sidebar-brand {
             font-weight: 700;
             font-size: 1.5rem;
@@ -62,31 +59,28 @@
             text-decoration: none;
         }
         .sidebar-brand .bi {
-            color: #0d6efd; /* Ícone com a cor primária do Bootstrap */
+            color: #0d6efd; 
         }
 
-        /* Conteúdo Principal */
         .main-content {
-            margin-left: var(--sidebar-width); /* Empurra o conteúdo para a direita */
+            margin-left: var(--sidebar-width); 
             padding: 2rem;
         }
 
         .card {
-            border: none; /* Remove bordas para um look mais clean */
-            border-radius: 0.75rem; /* Bordas mais arredondadas */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+            border: none; 
+            border-radius: 0.75rem; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
         }
 
         .card-header {
-            background-color: transparent; /* Remove o fundo do cabeçalho */
+            background-color: transparent; 
             border-bottom: 1px solid #f0f0f0;
             font-weight: 600;
         }
         
-        /* Estilos para telas menores */
         @media (max-width: 768px) {
             .sidebar {
-                /* Esconde o menu lateral e o transforma em um menu superior */
                 width: 100%;
                 height: auto;
                 position: relative;
@@ -98,7 +92,7 @@
                 padding: 1.5rem;
             }
             .sidebar .nav {
-                flex-direction: row; /* Itens do menu em linha */
+                flex-direction: row; 
                 justify-content: center;
             }
             .sidebar-brand {

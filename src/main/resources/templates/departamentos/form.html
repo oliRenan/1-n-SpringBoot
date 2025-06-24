@@ -146,14 +146,6 @@
                             <label for="descricao" class="form-label">Descrição</label>
                             <textarea id="descricao" class="form-control" th:field="*{descricao}" rows="3" placeholder="Descreva as principais atividades do departamento"></textarea>
                         </div>
-                        
-                        <div class="col-12">
-                            <label for="supervisor" class="form-label">Supervisor Responsável</label>
-                            <select id="supervisor" class="form-select form-control-lg" th:field="*{supervisor.idFuncionario}">
-                                <option value="">Selecione um supervisor...</option>
-                                <option th:each="func : ${funcionarios}" th:value="${func.idFuncionario}" th:text="${func.nome}"></option>
-                            </select>
-                        </div>
                     </div>
                 </div>
 

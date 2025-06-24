@@ -76,6 +76,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>CPF</th>
                                 <th>Nome</th>
                                 <th>Cargo</th>
                                 <th>Salário</th>
@@ -89,6 +90,7 @@
                             </tr>
                             <tr th:each="func : ${funcionarios}">
                                 <td th:text="${func.idFuncionario}"></td>
+                                <td th:text="${func.cpf}"></td>
                                 <td th:text="${func.nome}"></td>
                                 <td th:text="${func.cargo}"></td>
                                 <td th:text="'R$ ' + ${#numbers.formatDecimal(func.salario, 1, 'POINT', 2, 'COMMA')}"></td>
