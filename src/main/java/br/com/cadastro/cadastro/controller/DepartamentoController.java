@@ -1,7 +1,7 @@
 package br.com.cadastro.cadastro.controller;
 
 import java.util.List;
- 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +43,14 @@ public class DepartamentoController {
         departamentoRepository.save(departamento);
         return "redirect:/departamentos";
     }
+
+    @PostMapping("/salvar-modal")
+    public String salvarViaModal(@ModelAttribute("novoDepartamento") Departamento departamento) {
+        Departamento salvo = departamentoRepository.save(departamento);
+        return "redirect:/funcionarios/novo?novoDep=" + salvo.getIdDepartamento();
+    }
+
+
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
